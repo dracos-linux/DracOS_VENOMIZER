@@ -146,17 +146,17 @@ def menu():
         exit()
     elif menu == 'clear':
         os.system('clear')
-        back()
     else:
         print(c('Wrong Input!', 'red'))
         input()
-        back()
-
+    back()
+# x-terminal-emulator
 
 def back():
     menu()
 
-while menu():    
-    menu()
+# while menu():    
+#     menu()
         
-
+if __name__ == '__main__':
+    menu()

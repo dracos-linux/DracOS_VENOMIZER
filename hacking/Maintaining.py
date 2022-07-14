@@ -9,48 +9,39 @@ import Logo
 def MaintiningF():
     os.system("clear")
     Logo.logo_19()
-    print(
-        G(
-            """
-    1.  Cryptcat
-    2.  Cymothoa
-    3.  Dbd
-    4.  Dns2tcp
-    5.  HTTPTunnel
-    6.  Intersect
-    7.  Nishang
-    8.  Polenum
-    9.  PowerSploit
-    10. Pwnat
-    11. RidEnum
-    12. Sbd
-    13. Shellter
-    14. U3-Pwn
-    15. Webshells
-    16. Weevely
-    17. Winexe
-    0.  Back to Main Menu
-            """
-        )
-    )
-    print(R("    00. exit"))
+
     lists = ('cryptcat', 'cymothoa', 'dbd', 'dns2tcp', 'http-tunnel', 'intersect', 'nishang',
      'polenum', 'powersploit', 'pwnat', 'ridenum', 'sbd', 'shellter', 'u3-pwn', 'webshells', 'weevely', 'winexe')
+    
+    list_tool(lists)
+    
+    print(G('   101. Back to Main Menu'))
+    print(R("   102. exit"))
+    
     menu = int(input(G("[") + R("DracOS") + G("]select>")))
-    if menu:
+    
+    if menu in range(len(lists)):
         menu -= 1
         # Call function
         maintaining_tool(lists[menu])
-    elif menu == 0:
+
+    elif menu == 101:
         os.system("python3 /usr/bin/DracOS_VENOMIZER/venomizer.py")  # //usr/bin/
-    elif menu == 00:
+    elif menu == 102:
         exit()
     else:
         print(R('Wrong Input!'))
         input()
-        back()
+    back()
 
-
+def list_tool(a):
+    num = 0
+    for x in range(len(a)):
+        num += 1
+        if os.path.isfile(f'/usr/bin/{a[x]}'):
+            print(G(f'[{num}] {a[x]}'))
+        else:
+            print(R(f'[{num}] {a[x]}'))
 
 def back():
     MaintiningF()
@@ -61,8 +52,6 @@ def maintaining_tool(a):
     if os.path.isfile(f"/usr/bin/{a}"):
         os.system("clear")
         print(B("Tools Available"))
-        input()
-        back()
     else:
         os.system(
             f'xterm -T "☣ INSTALL {a} ☣" -geometry 100x30 -e "sudo apt install {a}"'
@@ -72,6 +61,6 @@ def maintaining_tool(a):
             print(B(f"{a} Already Installed"))
         else:
             print(R(f"Not Installing {a}"))
-        input()
-        back()
+    input()
+    # back()
         # end maintaining_tool

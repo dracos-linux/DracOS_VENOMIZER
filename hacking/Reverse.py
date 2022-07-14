@@ -8,40 +8,34 @@ import Logo
 def Reverse():
     os.system("clear")
     Logo.logo_20()
-    print(
-        G(
-            """
-    1.  Apktool
-    2.  Dex2jar
-    3.  Edb-debugger
-    4.  Jad
-    5.  Javasnoop
-    6.  JD-GUI
-    7.  OllyDbg
-    8.  Smali
-    9.  Valgrind
-    10. YARA
-    0.  Back to Main Menu
-            """
-        )
-    )
-    print(R("    00. exit"))
+    
     lists = ('apktool','dex2jar','edb-debugger','jad','javasnoop','jd-gui','ollydbg','smali','yara')
+    list_tool(lists)
+    print(G("    101. back"))
+    print(R("    102. exit"))
     menu = int(input(G("[") + R("DracOS") + G("]select>")))
-    if menu:
+    if menu in range(len(lists)):
         menu -= 1
         # Call function
         reverse_tool(lists[menu])
-    elif menu == "0":
+    elif menu == 101:
         os.system("python3 /usr/bin/DracOS_VENOMIZER/venomizer.py")  # /usr/bin/
-    elif menu == "00":
+    elif menu == 102:
         exit()
     else:
         print(R('Wrong Input!'))
         input()
-        back()
+    back()
 
 
+def list_tool(a):
+    num = 0
+    for x in range(len(a)):
+        num += 1
+        if os.path.isfile(f'/usr/bin/{a[x]}'):
+            print(G(f'[{num}] {a[x]}'))
+        else:
+            print(R(f'[{num}] {a[x]}'))
 
 def back():
     Reverse()
